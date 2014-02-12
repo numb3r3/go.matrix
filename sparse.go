@@ -22,11 +22,11 @@ type SparseMatrix struct {
 func (A *SparseMatrix) Get(i, j int) float64 {
 	i = i % A.rows
 	if i < 0 {
-		i = A.rows - i
+		i = A.rows + i
 	}
 	j = j % A.cols
 	if j < 0 {
-		j = A.cols - j
+		j = A.cols + j
 	}
 	x, _ := A.elements[i*A.step+j+A.offset]
 	return x
@@ -71,11 +71,11 @@ func (A *SparseMatrix) GetRowColIndex(index int) (i int, j int) {
 func (A *SparseMatrix) Set(i int, j int, v float64) {
 	i = i % A.rows
 	if i < 0 {
-		i = A.rows - i
+		i = A.rows + i
 	}
 	j = j % A.cols
 	if j < 0 {
-		j = A.cols - j
+		j = A.cols + j
 	}
 	// v == 0 results in removal of key from underlying map
 	if v == 0 {
